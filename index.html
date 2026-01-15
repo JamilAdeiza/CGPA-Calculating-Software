@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+  .insert {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;  
+  }
+
+  input {
+    height: 25px;
+    border: 2px solid black;
+    border-radius: 4px;
+  }
+
+  input:focus{
+    border: 2px solid green;
+    outline: none;
+  }
+
+
+  h1 {
+    font-weight: bolder;
+    text-align: center;
+  }
+  body {
+    background: url(IMG-20260114-WA0023.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+   
+  }
+
+  
+
+  #btn {
+    font-weight: bold;
+    border-radius: 7px;
+    height: 40px;
+    width: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+
+  #btn:hover {
+    background-color: rgb(182, 196, 153);
+  }
+  
+  #btn:hover {
+    border: 2px solid yellow;
+    outline: none;
+  }
+  
+  #result{
+    color: white;
+    font-weight: bolder;
+  } 
+
+  
+</style>
+</head>
+<body>
+  <h1>CGPA Calculator</h1>
+  <div class="insert">
+    
+  
+  <input type="text" name="number of course" id="grade0" placeholder="course one grade"><br><br>
+  <input type="number" name="unit for each course" id="unit0" placeholder="course one unit"><br><br>
+  
+  <input type="text" name="number of course" id="grade1" placeholder="course two grade"><br><br>
+  <input type="number" name="unit for each course" id="unit1" placeholder="course two unit"><br><br>-
+  
+  
+  <input type="text" name="number of course" id="grade2" placeholder="course three grade"><br><br>
+  <input type="number" name="unit for each course" id="unit2" placeholder="course three unit"><br><br>
+  
+  <input type="text" name="number of course" id="grade3" placeholder="course four grade"><br><br>
+  <input type="number" name="unit for each course" id="unit3" placeholder="course four unit"><br><br>
+  
+  <input type="text" name="number of course" id="grade4" placeholder="course five grade"><br><br>
+  <input type="number" name="unit for each course" id="unit4" placeholder="course five unit"><br><br>
+ 
+  <input type="text" name="number of course" id="grade5" placeholder="course six grade"><br><br>
+  <input type="number" name="unit for each course" id="unit5" placeholder="course six unit"><br><br>
+  
+  <input type="text" name="number of course" id="grade6" placeholder="course seven grade"><br><br>
+  <input type="number" name="unit for each course" id="unit6" placeholder="course seven unit"><br><br>
+  
+  <input type="text" name="number of course" id="grade7" placeholder="course eight grade"><br><br>
+  <input type="number" name="unit for each course" id="unit7" placeholder="course eight unit"><br><br>
+  
+  <input type="text" name="number of course" id="grade8" placeholder="course nine grade"><br><br>
+  <input type="number" name="unit for each course" id="unit8" placeholder="course nine unit"><br><br>
+  
+</div>
+
+<div>
+<button id="btn" onclick="calculateCGPA()">Calculate CGPA</button>
+</div>
+<p id="result"></p>
+<script>
+function calculateCGPA(){
+
+let gradePoint={
+  A:5,
+  B:4,
+  C:3,
+  D:2,
+  E:1,
+  F:0
+};
+
+let totalPoints = 0;
+let totalUnits=0;
+
+for(let i =0; i<9; i++) {
+  let grade= document.getElementById("grade" + i).value.toUpperCase();
+
+  let unit = Number(document.getElementById("unit" + i).value);
+
+  
+  if(!gradePoint.hasOwnProperty(grade) || isNaN(unit)) {
+  alert("please enter valid grade (A-F) and unit for the course " +(i +1 ));
+  return;
+  }
+
+  let point = gradePoint[grade];
+
+  totalPoints += point * unit;
+  totalUnits+= unit;
+
+
+
+}
+
+let cgpa = totalPoints / totalUnits;
+document.getElementById("result").innerText= "Your CGPA is: " + cgpa.toFixed(2);
+}
+</script>
+
+</body>
+</html>
